@@ -47,4 +47,7 @@ export class DataService {
     updateItem(i: item, index: number) {
         grocery.store[index] = i;
     }
+    deleteItem(index) {
+        grocery.store.splice(index, 1);
+    }
 }

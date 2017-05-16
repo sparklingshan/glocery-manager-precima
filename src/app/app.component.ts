@@ -47,7 +47,11 @@ export class AppComponent {
   }
   //delete selected item
   deleteItem() {
-
+    let r = confirm('are you sure to delete this item?');
+    if (r === true) {
+      this.data.deleteItem(this.selectedItemIndex);
+    }
+    this.modification = false;
   }
   //update item information
   updateItem() {
