@@ -13,3 +13,6 @@ npm start
 
 #run test
 npm run test
+
+#browser url
+localhost:4200
