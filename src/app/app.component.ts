@@ -38,7 +38,7 @@ export class AppComponent {
     this.selectedItemIndex = this.data.getItemIndexByTitle(title);
   }
   //close modification panel
-  close() {
+  cancel() {
     this.modification = false;
   }
   //close add new panel
