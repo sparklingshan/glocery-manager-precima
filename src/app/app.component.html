@@ -8,24 +8,27 @@
   <div id="grocery-list">
     <h2>My grocery list:</h2>
     <input (keyup)="searchItem()" [(ngModel)]="search" placeholder="Search by title ..." />
+    <button class="add-button" (click)='openNewItemPanel()'>Add</button>
     <ul>
-      <li *ngFor="let item of groceryList" (click)="chooseItem(item)">
+      <li *ngFor="let item of groceryList" (click)="chooseItem(item.title)">
         <div class="item-title">{{item.title}}</div>
         <br>
         <a href="{{item.link}}" target="_blank">Link: {{item.link}}</a>
         <div class="bottom-checkbox">
-          <span *ngIf="item.completed">Completed</span>
+          <span *ngIf="item.completed">Purchased</span>
         </div>
       </li>
     </ul>
   </div>
 
   <div id="item-modal" *ngIf="modification">
-    <form #form="ngForm">
+    <form #form="ngForm" novalidate (ngSubmit)="updateItem()">
       <div>
         <label>Title</label>
         <br>
-        <input type="text" name="title" [(ngModel)]="selectedItem.title" />
+        <input type="text" name="title" #title="ngModel" [(ngModel)]="selectedItem.title" required/>
+        <br>
+        <small *ngIf="!title.valid && form.form.submited" style="color: red">title is required.</small>
       </div>
       <div>
         <label>description</label>
@@ -40,6 +43,30 @@
       <br>
       <button type="submit">Comfirm</button>
       <button type="button" (click)="close()">Close</button>
+      <button type="button">Delete</button>
+    </form>
+  </div>
+
+  <div id="new-item-modal" *ngIf="addnew">
+    <form #form="ngForm" novalidate (ngSubmit)="addNewItem()">
+      <div>
+        <label>Title</label>
+        <br>
+        <input type="text" name="title" required #title="ngModel" [(ngModel)]='newItem.title' />
+      </div>
+      <div>
+        <label>description</label>
+        <br>
+        <textarea type="text" name="description" [(ngModel)]='newItem.description'></textarea>
+      </div>
+      <div>
+        <label>link</label>
+        <br>
+        <input type="text" name="link" [(ngModel)]='newItem.link' />
+      </div>
+      <br>
+      <button type="submit" [disabled]="!form.form.valid">Add</button>
+      <button type="button" (click)="closeNew()">Close</button>
     </form>
   </div>
 </div>

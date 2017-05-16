@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { DataService } from '../services/data/data.service';
 
+import { item } from '../models/item.model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,12 +15,15 @@ export class AppComponent {
   search = null;
   modification = false;
   selectedItem = null;
+  selectedItemIndex = null;
+  addnew = false;
+  newItem = new item(null, null, null, false);
 
   constructor(private data: DataService) {
-    data.getGrosery()[0].complete();
+    //initialize the grocery list
     this.groceryList = data.getGrosery();
   }
-
+  //search items by item title
   searchItem() {
     if (this.search.length < 1) {
       this.groceryList = this.data.getGrosery();
@@ -26,14 +31,36 @@ export class AppComponent {
     }
     this.groceryList = this.data.getItemsByTitle(this.search);
   }
-
-  chooseItem(item) {
-    this.selectedItem = item;
+  //click event for each list element
+  chooseItem(title: string) {
     this.modification = true;
+    this.selectedItem = this.data.getItemByTitle(title);
+    this.selectedItemIndex = this.data.getItemIndexByTitle(title);
   }
-
+  //close modification panel
   close() {
-    this.selectedItem = null;
     this.modification = false;
+  }
+  //close add new panel
+  closeNew() {
+    this.addnew = false;
+  }
+  //delete selected item
+  deleteItem() {
+
+  }
+  //update item information
+  updateItem() {
+    this.data.updateItem(this.selectedItem, this.selectedItemIndex);
+  }
+  //open add new item panel
+  openNewItemPanel() {
+    this.addnew = true;
+  }
+  //add new item
+  addNewItem() {
+    this.data.addNew(this.newItem);
+    alert('success');
+    this.newItem = new item(null, null, null, false);;
   }
 }
