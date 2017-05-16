@@ -1,6 +1,9 @@
 import { TestBed, async } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+
+import { DataService } from '../services/data/data.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -8,6 +11,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [DataService],
+      imports: [FormsModule]
     }).compileComponents();
   }));
 
