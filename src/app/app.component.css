@@ -1,0 +1,46 @@
+#grocery-list {
+    padding: 2% 5%;
+}
+
+#grocery-list li {
+    list-style: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 6px rgba(50, 50, 50, 0.5);
+    width: 50%;
+    padding: 2%;
+    margin-top: 2%;
+    color: grey;
+    cursor: pointer;
+}
+
+.item-title,
+.item-des {
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.bottom-checkbox {
+    float: right;
+    color: green;
+}
+
+#item-modal {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 6px rgba(50, 50, 50, 0.5);
+    position: absolute;
+    top: 5%;
+    left: 25vw;
+    background-color: #eee;
+    z-index: 99;
+    padding: 3%;
+}
+
+#item-modal input {
+    width: 40vw;
+}
+
+#item-modal textarea {
+    width: 40vw;
+    height: 20vw;
+}

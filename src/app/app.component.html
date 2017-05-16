@@ -1,0 +1,45 @@
+<div id="app">
+  <div id="header">
+    <h1>
+      {{title}}
+    </h1>
+  </div>
+
+  <div id="grocery-list">
+    <h2>My grocery list:</h2>
+    <input (keyup)="searchItem()" [(ngModel)]="search" placeholder="Search by title ..." />
+    <ul>
+      <li *ngFor="let item of groceryList" (click)="chooseItem(item)">
+        <div class="item-title">{{item.title}}</div>
+        <br>
+        <a href="{{item.link}}" target="_blank">Link: {{item.link}}</a>
+        <div class="bottom-checkbox">
+          <span *ngIf="item.completed">Completed</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div id="item-modal" *ngIf="modification">
+    <form #form="ngForm">
+      <div>
+        <label>Title</label>
+        <br>
+        <input type="text" name="title" [(ngModel)]="selectedItem.title" />
+      </div>
+      <div>
+        <label>description</label>
+        <br>
+        <textarea type="text" name="description" [(ngModel)]="selectedItem.description"></textarea>
+      </div>
+      <div>
+        <label>link</label>
+        <br>
+        <input type="text" name="link" [(ngModel)]="selectedItem.link" />
+      </div>
+      <br>
+      <button type="submit">Comfirm</button>
+      <button type="button" (click)="close()">Close</button>
+    </form>
+  </div>
+</div>
