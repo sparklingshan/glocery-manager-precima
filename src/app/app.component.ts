@@ -52,6 +52,7 @@ export class AppComponent {
   //update item information
   updateItem() {
     this.data.updateItem(this.selectedItem, this.selectedItemIndex);
+    alert('success');
   }
   //open add new item panel
   openNewItemPanel() {

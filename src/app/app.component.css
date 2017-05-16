@@ -47,7 +47,7 @@
     padding: 3%;
 }
 
-#item-modal input {
+#item-modal .form-input {
     width: 40vw;
 }
 
